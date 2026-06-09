@@ -2,11 +2,37 @@
   "name": "agrovision-mobile",
   "version": "0.1.0",
   "private": true,
+  "main": "App.tsx",
   "scripts": {
     "start": "expo start",
-    "lint": "echo \"No lint configured yet\"",
-    "test": "echo \"No tests configured yet\""
+    "android": "expo start --android",
+    "ios": "expo start --ios"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.1.2",
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
+    "@tanstack/react-query": "^5.0.0",
+    "axios": "^1.7.0",
+    "expo": "~54.0.0",
+    "expo-local-authentication": "~17.0.8",
+    "expo-secure-store": "~15.0.8",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-reanimated": "~3.16.7",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-worklets-core": "^1.6.3",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "~19.1.10",
+    "@types/react-native": "~0.73.0",
+    "typescript": "^5.3.0"
+  }
 }
