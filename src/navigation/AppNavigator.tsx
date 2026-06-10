@@ -24,6 +24,8 @@ import ProfileScreen from '@/src/screens/profile/ProfileScreen';
 import SettingsScreen from '@/src/screens/settings/SettingsScreen';
 import CreateParcelScreen from '@/src/screens/parcels/CreateParcelScreen';
 import ParcelDetailScreen from '@/src/screens/parcels/ParcelDetailScreen';
+import PredictionDetailScreen from '@/src/screens/predictions/PredictionDetailScreen';
+import RegisterScreen from '@/src/screens/auth/RegisterScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -87,6 +89,7 @@ function AppStack() {
       <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: 'Configuración' }} />
       <Stack.Screen name="CreateParcel" component={CreateParcelScreen} options={{ title: 'Nueva Parcela' }} />
       <Stack.Screen name="ParcelDetail" component={ParcelDetailScreen} options={{ title: 'Detalle Parcela' }} />
+      <Stack.Screen name="PredictionDetail" component={PredictionDetailScreen} options={{ title: 'Detalle Predicción' }} />
     </Stack.Navigator>
   );
 }
@@ -95,6 +98,7 @@ function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

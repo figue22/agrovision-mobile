@@ -101,11 +101,10 @@ export default function CropsScreen() {
     mutationFn: (id: string) => cultivosService.delete(id),
     onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['mis-cultivos'] });
-    },
-    onError: (err: any) => {
-        console.log('Error delete:', JSON.stringify(err.response?.data));
-        const msg = err.response?.data?.message || 'Error al eliminar cultivo';
-        Alert.alert('Error', Array.isArray(msg) ? msg.join(', ') : msg);
+        queryClient.invalidateQueries({ queryKey: ['parcelas'] });
+        queryClient.invalidateQueries({ queryKey: ['cultivos-parcela'] });
+        queryClient.refetchQueries({ queryKey: ['mis-cultivos'] });
+        queryClient.refetchQueries({ queryKey: ['parcelas'] });
     },
 });
 
