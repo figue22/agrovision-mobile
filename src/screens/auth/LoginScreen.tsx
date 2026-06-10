@@ -63,21 +63,31 @@ export default function LoginScreen() {
   };
 
   const handleLogin = async () => {
-    if (!correo || !contrasena) {
-      Alert.alert('Error', 'Por favor ingresa tu correo y contraseña');
-      return;
-    }
+      if (!correo || !contrasena) {
+          Alert.alert('Error', 'Por favor ingresa tu correo y contraseña');
+          return;
+      }
 
-    setLoading(true);
-    try {
-      const response = await authService.login(correo.trim().toLowerCase(), contrasena);
-      await setAuth(response.usuario, response.access_token, response.refresh_token);
-    } catch (err: any) {
-      const msg = err.response?.data?.message || 'Credenciales incorrectas';
-      Alert.alert('Error', Array.isArray(msg) ? msg.join(', ') : msg);
-    } finally {
-      setLoading(false);
-    }
+      setLoading(true);
+      try {
+          const response = await authService.login(correo.trim().toLowerCase(), contrasena);
+
+          // Verificar que sea agricultor
+          if (response.usuario.rol !== 'agricultor') {
+              Alert.alert(
+                  'Acceso restringido',
+                  'Esta aplicación es exclusiva para agricultores. Los administradores y técnicos deben usar el portal web.',
+              );
+              return;
+          }
+
+          await setAuth(response.usuario, response.access_token, response.refresh_token);
+      } catch (err: any) {
+          const msg = err.response?.data?.message || 'Credenciales incorrectas';
+          Alert.alert('Error', Array.isArray(msg) ? msg.join(', ') : msg);
+      } finally {
+          setLoading(false);
+      }
   };
 
   return (

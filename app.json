@@ -11,7 +11,9 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.agrovision.mobile",
       "infoPlist": {
-        "NSFaceIDUsageDescription": "AgroVision usa Face ID para autenticación segura"
+        "NSFaceIDUsageDescription": "AgroVision usa Face ID para autenticación segura",
+        "NSLocationWhenInUseUsageDescription": "AgroVision necesita tu ubicación para registrar parcelas",
+        "NSLocationAlwaysUsageDescription": "AgroVision necesita tu ubicación para registrar parcelas"
       }
     },
     "android": {

@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, ActivityIndicator, View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
+
 import { useAuthStore } from '@/src/stores/auth.store';
 import { colors } from '@/src/theme/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,6 +22,8 @@ import AlertsScreen from '@/src/screens/alerts/AlertsScreen';
 import ChatScreen from '@/src/screens/chat/ChatScreen';
 import ProfileScreen from '@/src/screens/profile/ProfileScreen';
 import SettingsScreen from '@/src/screens/settings/SettingsScreen';
+import CreateParcelScreen from '@/src/screens/parcels/CreateParcelScreen';
+import ParcelDetailScreen from '@/src/screens/parcels/ParcelDetailScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,6 +85,8 @@ function AppStack() {
       <Stack.Screen name="Weather" component={WeatherScreen} options={{ title: 'Clima' }} />
       <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'Perfil' }} />
       <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: 'Configuración' }} />
+      <Stack.Screen name="CreateParcel" component={CreateParcelScreen} options={{ title: 'Nueva Parcela' }} />
+      <Stack.Screen name="ParcelDetail" component={ParcelDetailScreen} options={{ title: 'Detalle Parcela' }} />
     </Stack.Navigator>
   );
 }
@@ -109,6 +114,13 @@ export default function AppNavigator() {
 
           if (token && usuarioStr && refreshToken) {
               const usuario = JSON.parse(usuarioStr);
+
+              // Solo agricultores pueden usar la app móvil
+              if (usuario.rol !== 'agricultor') {
+                  await AsyncStorage.clear();
+                  return;
+              }
+
               await setAuth(usuario, token, refreshToken);
           }
       } catch {
