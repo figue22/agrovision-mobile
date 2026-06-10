@@ -65,12 +65,13 @@ export default function ParcelDetailScreen({ route, navigation }: any) {
   // ── Mutations ──
   const cultivoMutation = useMutation({
     mutationFn: (data: any) => parcelasService.createCultivo(parcela.parcela_id, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cultivos-parcela', parcela.parcela_id] });
-      queryClient.invalidateQueries({ queryKey: ['parcelas'] });
-      setShowCultivoForm(false);
-      resetCultivoForm();
-      Alert.alert('✅ Cultivo registrado correctamente');
+        onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['cultivos-parcela', parcela.parcela_id] });
+        queryClient.invalidateQueries({ queryKey: ['parcelas'] });
+        queryClient.refetchQueries({ queryKey: ['cultivos-parcela', parcela.parcela_id] });
+        setShowCultivoForm(false);
+        resetCultivoForm();
+        Alert.alert('✅ Cultivo registrado correctamente');
     },
     onError: (err: any) => {
       const msg = err.response?.data?.message || 'Error al registrar cultivo';
