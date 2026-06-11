@@ -235,6 +235,13 @@ export default function LoginScreen({navigation}: any) {
                 <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity
+              style={styles.forgotButton}
+              onPress={() => navigation.navigate('ForgotPassword')}
+            >
+              <Text style={styles.forgotText}>¿Olvidaste tu contraseña?</Text>
+            </TouchableOpacity>
+
           {biometricAvailable && (
             <TouchableOpacity style={styles.biometricButton} onPress={authenticateBiometric}>
               <Text style={styles.biometricText}>🔐 Usar huella / Face ID</Text>
@@ -286,4 +293,6 @@ const styles = StyleSheet.create({
 
   registerButton: { alignItems: 'center', paddingVertical: 8, marginTop: 4 },
   registerText: { fontSize: 13, color: colors.primary },
+  forgotButton: { alignItems: 'center', paddingVertical: 6 },
+  forgotText: { fontSize: 13, color: colors.textMuted, textDecorationLine: 'underline' },
 });
