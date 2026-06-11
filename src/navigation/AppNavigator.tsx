@@ -26,6 +26,8 @@ import CreateParcelScreen from '@/src/screens/parcels/CreateParcelScreen';
 import ParcelDetailScreen from '@/src/screens/parcels/ParcelDetailScreen';
 import PredictionDetailScreen from '@/src/screens/predictions/PredictionDetailScreen';
 import RegisterScreen from '@/src/screens/auth/RegisterScreen';
+import ForgotPasswordScreen from '@/src/screens/auth/ForgotPasswordScreen';
+import ResetPasswordScreen from '@/src/screens/auth/ResetPasswordScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,6 +101,8 @@ function AuthStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
